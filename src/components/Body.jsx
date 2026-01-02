@@ -18,11 +18,11 @@ const Body = () => {
       });
       dispatch(addUser(res.data.user));
     } catch (error) {
-      if (error.status === 401) {
+      if (error.response?.status === 401) {
         navigate("/login");
         return;
       }
-      console.error("Error fetching profile data:", error);
+      console.log("error" + error);
     }
   };
 

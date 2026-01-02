@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router";
@@ -11,7 +11,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-  if (user) return navigate("/");
+  const [error, setError] = useState("");
+
   const handleLogin = async () => {
     try {
       const res = await axios.post(
@@ -25,9 +26,13 @@ const Login = () => {
       dispatch(addUser(res.data.user));
       return navigate("/");
     } catch (error) {
-      console.error("Login failed : ", error);
+      setError(error?.response?.data?.error || "Something went wrong");
     }
   };
+
+  useEffect(() => {
+    if (user) return navigate("/");
+  });
 
   return (
     <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
@@ -52,6 +57,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {error && <div className='text-red-500 items-start'>{error}</div>}
           <div className='card-actions'>
             <button
               className='btn btn-primary'
