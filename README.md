@@ -18,3 +18,5 @@
 - code mentain, you should not be access other routes without login.
 - if token is not present , redirect user to login page.
 - create Logout Feature
+- create feedSlice and add the feed from API and store.
+- create user card and fill the info into user card.
