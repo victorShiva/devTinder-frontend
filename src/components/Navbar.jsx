@@ -25,7 +25,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className='navbar bg-base-200 shadow-sm'>
+    <div className='navbar bg-base-200 shadow-sm fixed top-0 z-2'>
       <div className='flex-1'>
         <Link
           to='/'
@@ -64,7 +64,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to={"/user/connections"}>Connections</Link>
               </li>
               <li onClick={() => handleLogOut()}>
                 <a>Logout</a>

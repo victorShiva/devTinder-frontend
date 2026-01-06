@@ -31,7 +31,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user) return navigate("/");
+    console.log(user);
+    if (user) {
+      navigate("/");
+    }
   });
 
   return (

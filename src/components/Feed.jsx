@@ -15,7 +15,6 @@ const Feed = () => {
       withCredentials: true,
     });
     dispatch(addFeed(response.data));
-    console.log(response);
   };
 
   useEffect(() => {
@@ -23,8 +22,13 @@ const Feed = () => {
   }, []);
   return (
     feed && (
-      <div className='h-[90vh] flex justify-center items-center'>
-        <UserCard user={feed[0]} />
+      <div className='flex justify-center items-center gap-5'>
+        {feed.map((user, ind) => (
+          <UserCard
+            key={ind}
+            user={user}
+          />
+        ))}
       </div>
     )
   );
