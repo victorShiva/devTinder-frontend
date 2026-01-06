@@ -6,7 +6,7 @@ const Profile = () => {
   const user = useSelector((store) => store.user);
   return (
     user && (
-      <div className=''>
+      <div className='relative'>
         <EditProfile user={user} />
       </div>
     )
