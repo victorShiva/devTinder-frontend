@@ -2,28 +2,44 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { BASE_URL } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequests } from "../utils/requestSlice";
+import { addRequests, removeRequest } from "../utils/requestSlice";
 
 const Request = () => {
   const dispatch = useDispatch();
   const requests = useSelector((store) => store.requests);
-  try {
-    const fetchRequests = async () => {
+
+  const reviewRequest = async (status, id) => {
+    try {
+      await axios.post(
+        `${BASE_URL}/request/review/${status}/${id}`,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeRequest(id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchRequests = async () => {
+    try {
       const res = await axios.get(`${BASE_URL}/user/request/received`, {
         withCredentials: true,
       });
 
       dispatch(addRequests(res?.data?.data));
-    };
-    useEffect(() => {
-      fetchRequests();
-    }, []);
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+
   if (!requests) return;
   if (requests.length === 0)
-    return <h1 className='my-20'>No Requests Found</h1>;
+    return <h1 className='my-20 flex justify-center'>No Requests Found</h1>;
   return (
     <div className=' my-20 bg-base-100'>
       <h1 className='font-bold text-2xl text-center'>Requests</h1>
@@ -48,8 +64,20 @@ const Request = () => {
               {skills && <p>{skills.join(", ")}</p>}
             </div>
             <div className='flex flex-wrap gap-2 items-center'>
-              <button className='btn btn-secondary'>Reject</button>
-              <button className='btn btn-accent'>Accept</button>
+              <button
+                className='btn btn-secondary'
+                onClick={() => {
+                  reviewRequest("rejected", request._id);
+                }}>
+                Reject
+              </button>
+              <button
+                className='btn btn-accent'
+                onClick={() => {
+                  reviewRequest("accepted", request._id);
+                }}>
+                Accept
+              </button>
             </div>
           </div>
         );
