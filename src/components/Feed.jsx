@@ -10,7 +10,6 @@ const Feed = () => {
   const feed = useSelector((store) => store.feed);
 
   const getData = async () => {
-    if (feed) return;
     const response = await axios.get(BASE_URL + "/user/feed", {
       withCredentials: true,
     });
@@ -20,6 +19,7 @@ const Feed = () => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     feed && (
       <div className='flex justify-center items-center gap-5'>

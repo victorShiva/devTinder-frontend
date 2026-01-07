@@ -7,23 +7,28 @@ import { addConnection } from "../utils/connectionSlice";
 const Connections = () => {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connections);
-  try {
-    const fetchConnections = async () => {
+
+  const fetchConnections = async () => {
+    try {
       const res = await axios.get(`${BASE_URL}/user/connections`, {
         withCredentials: true,
       });
       dispatch(addConnection(res?.data?.data));
       console.log(res?.data?.data);
-    };
-    useEffect(() => {
-      fetchConnections();
-    }, []);
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchConnections();
+  }, []);
+
   if (!connections) return;
-  if (connections.length === 0)
-    return <h1 className='my-20'>No Connetions Found</h1>;
+
+  if (connections.length === 0) {
+    return <h1 className='my-20 text-center'>No Connetions Found</h1>;
+  }
   return (
     <div className=' my-20 bg-base-100'>
       <h1 className='font-bold text-2xl text-center'>Connetions</h1>
