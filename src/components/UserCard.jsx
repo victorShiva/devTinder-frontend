@@ -26,6 +26,7 @@ const UserCard = ({ user }) => {
     <div className='card bg-base-200 w-96 min-h-112.5 shadow-sm absolute top-30 '>
       <figure>
         <img
+          className='w-96 h-96'
           src={photoURL}
           alt='userPhoto'
         />

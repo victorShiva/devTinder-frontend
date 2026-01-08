@@ -6,6 +6,7 @@ import { addFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
 
 const Feed = () => {
+  console.log("feed-c");
   const dispatch = useDispatch();
   const feed = useSelector((store) => store.feed);
 

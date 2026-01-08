@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { removeAllFeed } from "../utils/feedSlice";
+import { removeAllRequest } from "../utils/requestSlice";
+import { removeConnection } from "../utils/connectionSlice";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
@@ -20,6 +22,8 @@ const Navbar = () => {
       if (res.status == 200) {
         dispatch(removeUser());
         dispatch(removeAllFeed());
+        dispatch(removeAllRequest());
+        dispatch(removeConnection());
         navigate("/login");
       }
     } catch (error) {

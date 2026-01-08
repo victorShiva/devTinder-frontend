@@ -15,6 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const [error, setError] = useState("");
+  console.log("login-c");
 
   const handleLogin = async () => {
     try {

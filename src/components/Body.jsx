@@ -11,11 +11,13 @@ const Body = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  console.log(user);
 
   const fetchData = async () => {
     try {
+      console.log(user);
       if (!user) return navigate("/login");
-      console.log("object");
+      console.log("body-c");
       const res = await axios.get(`${BASE_URL}/profile/view`, {
         withCredentials: true,
       });
