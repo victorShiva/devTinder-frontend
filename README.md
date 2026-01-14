@@ -109,4 +109,29 @@ server {
 - ctrl + x => y => enter
 - sudo systemctl restart nginx
 - you go any browser <publicIp>/api/
-- Modify the BASE_URL in fronend project to "/api"
+- Modify the BASE_URL in fronend project to "/api" and push the git hub and pull to EC2 server
+- npm run build (in server)
+- sudo cp -r dist/\* /var/www/html/
+
+## Purchase A Domain
+
+- purchase a domain from godaddy
+- manage DNS
+- Set DNS mapping for your domain name in their website.
+- Using cloudfare to managing the DNS from godaddy
+- In cloud fare search DNS record
+- change the name server on godaddy and point at to cloudfare
+- when the updating is success
+- now cloudfare is manage domain name
+- DNS record : A devtinder.in 43.204.96.49
+- Enable SSL for website
+
+# Adding a custom domain name
+
+- Purchased a domain name from godaddy
+- signup on cloudfare
+- change the name servers on godaddy and point at to cludfare
+- when the updating is success
+- now cloudfare is manage domain name
+- DNS record : A devtinder.in 43.204.96.49
+- Enable SSL for website
