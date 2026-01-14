@@ -56,7 +56,7 @@
 - now search <EC2-IP>:7777/getUsers in any browser.
 - npm install pm2 -g (Process Manager 27/7)
 - pm2 list
-- pm2 start npm -- start (using npm script)
+- pm2 start npm -- start (using npm script) in (banckend directory)
 - pm2 start npm --name devTinder -- start (using name) , pm2 start npm --name devTinder -- run dev
 - pm2 logs
 - pm2 delete <name>

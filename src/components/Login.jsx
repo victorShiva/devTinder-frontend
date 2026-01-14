@@ -19,8 +19,6 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      console.log("read handleLogin");
-      console.log(BASE_URL);
       const res = await axios.post(
         `${BASE_URL}/login`,
         {
